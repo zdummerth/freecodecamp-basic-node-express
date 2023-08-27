@@ -31,6 +31,12 @@ app.get("/now", nowMiddleware, (req, res) => {
   });
 });
 
+app.get("/:word/echo", (req, res) => {
+  res.json({
+    echo: req.params.word,
+  });
+});
+
 app.use("/public", express.static(__dirname + "/public"));
 
 module.exports = app;
