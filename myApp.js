@@ -22,15 +22,15 @@ app.get("/json", (req, res) => {
   res.json({ message });
 });
 
-app.get(
-  "/now",
-  (req, res, next) => {
-    req.time = new Date().toString();
-    next();
-  },
-  (req, res) => {
-    res.json({ time: req.time });
-  }
-);
+const nowMiddleware = (req, res, next) => {
+  req.time = new Date().toString();
+  next();
+};
+
+app.get("/now", nowMiddleware, (req, res) => {
+  res.send({
+    time: req.time,
+  });
+});
 
 module.exports = app;
