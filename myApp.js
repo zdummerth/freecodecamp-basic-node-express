@@ -28,7 +28,7 @@ const nowMiddleware = (req, res, next) => {
 };
 
 app.get("/now", nowMiddleware, (req, res) => {
-  res.send({
+  res.json({
     time: req.time,
   });
 });
